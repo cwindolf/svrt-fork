@@ -22,32 +22,18 @@
  *
  */
 
-#include "vision_problem_20.h"
-#include "shape.h"
+#ifndef VISION_PROBLEM_0_H
+#define VISION_PROBLEM_0_H
 
-VisionProblem_20::VisionProblem_20() { }
+#include "vignette_generator.h"
+#include "vision_problem_tools.h"
 
+class VisionProblem_0 : public VignetteGenerator {
+  static const int part_size = Vignette::width / 6;
+  static const int hole_size = Vignette::width / 64;
+public:
+  VisionProblem_0();
+  virtual void generate(int label, Vignette *vignette);
+};
 
-void VisionProblem_20::generate(int label, Vignette *vignette) {
-  const int nb_shapes = 2;
-  int xs[nb_shapes], ys[nb_shapes];
-  Shape shapes[nb_shapes];
-
-  int error;
-  do{
-    vignette->clear();
-    error = 0;
-    for(int n = 0; !error && n < nb_shapes; n++) {
-      xs[n] = int(drand48() * Vignette::width);
-      ys[n] = int(drand48() * Vignette::height);
-      if(!label || n == 0) {
-        shapes[n].randomize(part_size / 2, part_hole_size / 2);
-      } else {
-        shapes[n].copy(&shapes[0]);
-        shapes[n].symmetrize(ys[n] - ys[0], - xs[n] + xs[0]);
-      }
-      error |= shapes[n].overwrites(vignette, xs[n], ys[n]);
-      shapes[n].draw(vignette, xs[n], ys[n]);
-    }
-  }  while(error);
-}
+#endif

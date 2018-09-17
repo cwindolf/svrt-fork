@@ -22,16 +22,16 @@
  *
  */
 
-#include "vision_problem_1.h"
+#include "vision_problem_0.h"
 #include "shape.h"
 
-VisionProblem_1::VisionProblem_1() { }
+VisionProblem_0::VisionProblem_0() { }
 
-void VisionProblem_1::generate(int label, Vignette *vignette) {
-  const int nb_shapes = 2;
+void VisionProblem_0::generate(int label, Vignette *vignette) {
+  const int nb_shapes = 1;
   int xs[nb_shapes], ys[nb_shapes];
   scalar_t scales[nb_shapes], angles[nb_shapes];
-  Shape *shapes = new Shape[nb_shapes];
+  Shape shapes[nb_shapes];
 
   int error;
   do {
@@ -70,5 +70,4 @@ void VisionProblem_1::generate(int label, Vignette *vignette) {
       shapes[n].draw(vignette, xs[n], ys[n]);
     }
   } while(error);
-
 }

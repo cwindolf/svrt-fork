@@ -28,7 +28,7 @@
 VisionProblem_19::VisionProblem_19() { }
 
 void VisionProblem_19::generate(int label, Vignette *vignette) {
-  int nb_shapes = 2;
+  const int nb_shapes = 2;
   int xs[nb_shapes], ys[nb_shapes];
   scalar_t scales[nb_shapes], angles[nb_shapes];
   Shape shapes[nb_shapes];
