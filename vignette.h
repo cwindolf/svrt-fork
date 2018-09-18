@@ -30,7 +30,12 @@
 
 class Vignette {
 public:
+
+#ifdef VIGNETTE_WIDTH
+  static const int width = VIGNETTE_WIDTH;
+#else
   static const int width = 128;
+#endif
   static const int height = width;
   static const int nb_grayscales = 256;
 

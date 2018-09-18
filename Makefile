@@ -32,7 +32,7 @@ ifeq ($(PROFILE),yes)
   PROFILE_FLAG = -pg
 endif
 
-CXXFLAGS = -Wall $(OPTIMIZE_FLAG) $(PROFILE_FLAG) $(CXXGLPK)
+CXXFLAGS = -Wall $(OPTIMIZE_FLAG) $(PROFILE_FLAG) $(CXXGLPK) $(CFLAGS)
 
 all: vision_test data_generator TAGS
 

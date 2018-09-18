@@ -39,10 +39,9 @@ void VisionProblem_0::generate(int label, Vignette *vignette) {
     scalar_t max_scale = -1;
 
     for(int n = 0; n < nb_shapes; n++) {
-      xs[n] = int(drand48() * Vignette::width);
-      ys[n] = int(drand48() * Vignette::height);
-
-        scales[n] = 2.5;
+      xs[n] = int(Vignette::width / 2);
+      ys[n] = int(Vignette::height / 2);
+      scales[n] = 2.5;
 
       if(n == 0 || scales[n] > max_scale) max_scale = scales[n];
 
