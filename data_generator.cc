@@ -208,7 +208,6 @@ int main(int argc, char **argv) {
       generator->generate(0, &vignette);
       sprintf(buffer, "%s/problem_0_sample_%01d.png", global.result_path, k);
       vignette.write_png(buffer, 1);
-      cout << "Wrote " << buffer << endl;
     }
   } else {
     for(int k = 0; k < global.nb_train_samples; k++) {
@@ -216,7 +215,6 @@ int main(int argc, char **argv) {
         generator->generate(l, &vignette);
         sprintf(buffer, "%s/problem_%d_sample_%01d_%04d.png", global.result_path, global.problem_number, l, k);
         vignette.write_png(buffer, 1);
-        cout << "Wrote " << buffer << endl;
       }
     }
   }
