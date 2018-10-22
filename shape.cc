@@ -264,8 +264,8 @@ void Shape::draw_c(Vignette *vignette, scalar_t xc, scalar_t yc, int n1, int n2,
   int n3 = (n1 + n2) / 2;
 
   if(n1 + 1 < n2 && (abs(x1 - x2) > 1 || abs(y1 - y2) > 1)) {
-    draw(vignette, xc, yc, n1, n3);
-    draw(vignette, xc, yc, n3, n2);
+    draw_c(vignette, xc, yc, n1, n3, c);
+    draw_c(vignette, xc, yc, n3, n2, c);
   } else {
     if(x1 >= margin && x1 < Vignette::width-margin &&
        y1 >= margin && y1 < Vignette::height-margin) {
