@@ -67,6 +67,7 @@ using namespace std;
 #include "vision_problem_21.h"
 #include "vision_problem_22.h"
 #include "vision_problem_23.h"
+#include "vision_problem_100.h"
 
 //////////////////////////////////////////////////////////////////////
 
@@ -177,6 +178,9 @@ int main(int argc, char **argv) {
   case 23:
     generator = new VisionProblem_23();
     break;
+  case 100:
+    generator = new VisionProblem_100();
+    break;
   default:
     cerr << "Can not find problem "
          << global.problem_number
@@ -214,7 +218,11 @@ int main(int argc, char **argv) {
       for(int l = 0; l < 2; l++) {
         generator->generate(l, &vignette);
         sprintf(buffer, "%s/problem_%d_sample_%01d_%04d.png", global.result_path, global.problem_number, l, k);
-        vignette.write_png(buffer, 1);
+        if (global.problem_number == 100) {
+          vignette.write_rgb_png(buffer, 1);
+        } else {
+          vignette.write_png(buffer, 1);
+        }
       }
     }
   }

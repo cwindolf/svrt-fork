@@ -49,6 +49,7 @@ class Shape {
   void generate_part(scalar_t *xp, scalar_t *yp, int *nb_pixels, scalar_t radius, scalar_t hole_radius);
   int overwrites(Vignette *vignette, scalar_t xc, scalar_t yc, int first, int nb);
   void draw(Vignette *vignette, scalar_t xc, scalar_t yc, int first, int nb);
+  void draw_c(Vignette *vignette, scalar_t xc, scalar_t yc, int first, int nb, char c);
 
 public:
   Shape();
@@ -62,6 +63,7 @@ public:
 
   int overwrites(Vignette *vignette, scalar_t xc, scalar_t yc);
   void draw(Vignette *vignette, scalar_t xc, scalar_t yc);
+  void draw_c(Vignette *vignette, scalar_t xc, scalar_t yc, char c);
 };
 
 #endif

@@ -255,3 +255,28 @@ void Shape::draw(Vignette *vignette, scalar_t xc, scalar_t yc) {
   draw(vignette, xc, yc, n_pixels3, n_pixels4);
   draw(vignette, xc, yc, n_pixels4, nb_pixels);
 }
+
+void Shape::draw_c(Vignette *vignette, scalar_t xc, scalar_t yc, int n1, int n2, char c) {
+  int x1 = int(x_pixels[n1 % nb_pixels] + xc);
+  int y1 = int(y_pixels[n1 % nb_pixels] + yc);
+  int x2 = int(x_pixels[n2 % nb_pixels] + xc);
+  int y2 = int(y_pixels[n2 % nb_pixels] + yc);
+  int n3 = (n1 + n2) / 2;
+
+  if(n1 + 1 < n2 && (abs(x1 - x2) > 1 || abs(y1 - y2) > 1)) {
+    draw(vignette, xc, yc, n1, n3);
+    draw(vignette, xc, yc, n3, n2);
+  } else {
+    if(x1 >= margin && x1 < Vignette::width-margin &&
+       y1 >= margin && y1 < Vignette::height-margin) {
+      vignette->content[x1 + Vignette::width * y1] = c;
+    }
+  }
+}
+
+void Shape::draw_c(Vignette *vignette, scalar_t xc, scalar_t yc, char c) {
+  draw_c(vignette, xc, yc, n_pixels1, n_pixels2, c);
+  draw_c(vignette, xc, yc, n_pixels2, n_pixels3, c);
+  draw_c(vignette, xc, yc, n_pixels3, n_pixels4, c);
+  draw_c(vignette, xc, yc, n_pixels4, nb_pixels, c);
+}

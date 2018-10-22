@@ -22,45 +22,19 @@
  *
  */
 
-#ifndef VIGNETTE_H
-#define VIGNETTE_H
+#ifndef VISION_PROBLEM_100_H
+#define VISION_PROBLEM_100_H
 
-#include "misc.h"
-#include "global.h"
+#include "vignette_generator.h"
+#include "vision_problem_tools.h"
 
-class Vignette {
+// This is vision problem 1, but with each shape in its own channel.
+class VisionProblem_100 : public VignetteGenerator {
+  static const int part_size = Vignette::width / 6;
+  static const int hole_size = Vignette::width / 64;
 public:
-
-#ifdef VIGNETTE_WIDTH
-  static const int width = VIGNETTE_WIDTH;
-#else
-  static const int width = 128;
-#endif
-  static const int height = width;
-  static const int nb_grayscales = 256;
-
-  // static const int small_part_size = 24;
-  // static const int small_part_hole_size = 2;
-  // static const int big_part_size = 64;
-  // static const int big_part_hole_size = 32;
-
-  int content[width * height];
-
-  void clear();
-
-  void write_png(const char *name, int delta);
-
-  // maps content[]=1,2,3 to red,green,blue.
-  void write_rgb_png(const char *name, int delta);
-
-  void fill(int x, int y, int v);
-  void switch_values(int c1, int c2);
-  void replace_value(int from, int to);
-  void superpose(Vignette *infront, Vignette *inback);
-  int surface();
-  int intersection(Vignette *v);
-  void grow();
-
+  VisionProblem_100();
+  virtual void generate(int label, Vignette *vignette);
 };
 
 #endif

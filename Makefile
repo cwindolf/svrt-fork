@@ -32,7 +32,7 @@ ifeq ($(PROFILE),yes)
   PROFILE_FLAG = -pg
 endif
 
-CXXFLAGS = -Wall $(OPTIMIZE_FLAG) $(PROFILE_FLAG) $(CXXGLPK) $(CFLAGS)
+CXXFLAGS = $(OPTIMIZE_FLAG) $(PROFILE_FLAG) $(CXXGLPK) $(CFLAGS)
 
 all: vision_test data_generator TAGS
 
@@ -72,6 +72,7 @@ vision_test: misc.o \
 	vision_problem_21.o \
 	vision_problem_22.o \
 	vision_problem_23.o \
+	vision_problem_100.o \
 	classifier_reader.o \
         classifier.o naive_bayesian_classifier.o \
 	stump.o boosted_classifier.o \
@@ -113,6 +114,7 @@ data_generator: misc.o \
 	vision_problem_21.o \
 	vision_problem_22.o \
 	vision_problem_23.o \
+	vision_problem_100.o \
 	classifier_reader.o \
         classifier.o naive_bayesian_classifier.o \
 	stump.o boosted_classifier.o \
@@ -124,6 +126,6 @@ Makefile.depend: *.h *.cc Makefile
 	$(CC) -M *.cc > Makefile.depend
 
 clean:
-	\rm -f vision_test *.o Makefile.depend TAGS
+	\rm -f vision_test data_generator *.o Makefile.depend TAGS
 
 -include Makefile.depend

@@ -48,6 +48,35 @@ void Vignette::write_png(const char *name, int delta) {
   result.write_png(name);
 }
 
+void Vignette::write_rgb_png(const char *name, int delta) {
+  RGBImage result(width * delta - (delta > 1 ? 1 : 0), height * delta - (delta > 1 ? 1 : 0));
+  for(int y = 0; y < result.height(); y++) {
+    for(int x = 0; x < result.width(); x++) {
+      int c;
+      if(delta > 4 && (x%delta == 0 || y%delta == 0)) {
+        result.set_pixel(x, y, 0, 0, 0);
+      } else {
+        switch (content[(x / delta) + width * (y / delta)]) {
+          case 1:
+            result.set_pixel(x, y, 255, 0, 0);
+            break;
+          case 2:
+            result.set_pixel(x, y, 0, 255, 0);
+            break;
+          case 3:
+            result.set_pixel(x, y, 0, 0, 255);
+            break;
+          default:
+            result.set_pixel(x, y, 0, 0, 0);
+        }
+      }
+      result.set_pixel(x, y, c, c, c);
+    }
+  }
+
+  result.write_png(name);
+}
+
 void Vignette::fill(int x, int y, int v) {
   if(x >= 0 && x < Vignette::width && y >= 0 && y < Vignette::height &&
      content[x + Vignette::width * y] == 255) {
