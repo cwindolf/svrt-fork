@@ -52,7 +52,6 @@ void Vignette::write_rgb_png(const char *name, int delta) {
   RGBImage result(width * delta - (delta > 1 ? 1 : 0), height * delta - (delta > 1 ? 1 : 0));
   for(int y = 0; y < result.height(); y++) {
     for(int x = 0; x < result.width(); x++) {
-      int c;
       if(delta > 4 && (x%delta == 0 || y%delta == 0)) {
         result.set_pixel(x, y, 0, 0, 0);
       } else {
@@ -70,7 +69,6 @@ void Vignette::write_rgb_png(const char *name, int delta) {
             result.set_pixel(x, y, 0, 0, 0);
         }
       }
-      result.set_pixel(x, y, c, c, c);
     }
   }
 
