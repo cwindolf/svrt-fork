@@ -210,14 +210,14 @@ int main(int argc, char **argv) {
     // 0 does not care about labels.
     for(int k = 0; k < global.nb_train_samples; k++) {
       generator->generate(0, &vignette);
-      sprintf(buffer, "%s/problem_0_sample_%01d.png", global.result_path, k);
+      sprintf(buffer, "%s/problem_0_sample_%06d.png", global.result_path, k);
       vignette.write_png(buffer, 1);
     }
   } else {
     for(int k = 0; k < global.nb_train_samples; k++) {
       for(int l = 0; l < 2; l++) {
         generator->generate(l, &vignette);
-        sprintf(buffer, "%s/problem_%d_sample_%01d_%04d.png", global.result_path, global.problem_number, l, k);
+        sprintf(buffer, "%s/problem_%d_sample_%01d_%06d.png", global.result_path, global.problem_number, l, k);
         if (global.problem_number == 100) {
           vignette.write_rgb_png(buffer, 1);
         } else {
